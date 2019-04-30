@@ -4,6 +4,7 @@ Dependencies:
 - Python 3
 - Jupyter
 - Pandas
+- Pandas Schema
 
 Using data provided by email
 
