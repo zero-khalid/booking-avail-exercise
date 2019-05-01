@@ -5,6 +5,8 @@ Dependencies:
 - Jupyter
 - Pandas
 - Pandas Schema
+- Matplotlib
+- GeoBases
 
 Using data provided by email
 
