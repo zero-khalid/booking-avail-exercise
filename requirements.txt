@@ -3,3 +3,9 @@ pandas
 pandas_schemas
 matplotlib
 GeoBases
+Flask
+flask_restful
+flask_sqlalchemy
+flask_marshmallow
+marshmallow-sqlalchemy
+flask_restful_swagger
