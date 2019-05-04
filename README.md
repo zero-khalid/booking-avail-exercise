@@ -7,6 +7,8 @@ Dependencies:
 - Pandas Schema
 - Matplotlib
 - GeoBases
+- Flask + Restful
+- Flask Restful Swagger
 
 Using data provided by email
 
@@ -20,3 +22,17 @@ column -s^ -t < subset_200_bookings.csv| less -#2 -N -S
 
 csvtool readable bookings_sorted_subset.csv -t '^'| view -
 ```
+
+
+To run the webservice:
+```
+python3 webservice/airport.py
+```
+
+Swagger & API available at 
+```
+http://localhost:5000/api/v1/spec.html#!/spec
+http://localhost:5000/
+```
+
+![alt text](https://github.com/zero-khalid/booking-avail-exercise/blob/master/swagger.png "Swagger API screenshot")
