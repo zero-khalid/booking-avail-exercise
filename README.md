@@ -2,8 +2,6 @@
 
 [HTML preview of the Jupiter playbook](http://htmlpreview.github.com/?https://github.com/zero-khalid/booking-avail-exercise/blob/master/avail-booking.html "HTML preview of the Jupiter playbook")
 
-HTML preview of the Jupyter playbook: 
-
 Dependencies: 
 - Python 3
 - Jupyter
