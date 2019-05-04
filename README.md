@@ -17,4 +17,6 @@ column -s^ -t < subset_200_searches.csv| less -#2 -N -S
 
 head -n200 bookings.csv  > subset_200_bookings.csv
 column -s^ -t < subset_200_bookings.csv| less -#2 -N -S
+
+csvtool readable bookings_sorted_subset.csv -t '^'| view -
 ```
