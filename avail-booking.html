@@ -13122,7 +13122,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -13167,7 +13167,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/media/sf_SharedVirtbox/bookings.csv/bookings.csv&#39;</span>
@@ -13187,7 +13187,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13260,7 +13260,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Note: Sum of pax returned float -&gt; invalid entry in dataset -&gt; verification needed</span>
@@ -13288,7 +13288,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read huge dataset (GBs size .csv) by chunks to avoid OOM, chunksize at will for now </span>
@@ -15622,7 +15622,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">create_engine</span>
@@ -15634,11 +15634,13 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 <span class="k">def</span> <span class="nf">getAirportName</span><span class="p">(</span><span class="n">iata_code</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">geo_a</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">iata_code</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">iata_code</span><span class="p">)</span>
 
-<span class="n">biggest_airport_pax</span> <span class="o">=</span> <span class="n">nb_pax_per_airport</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;pax&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">biggest_airport_pax</span> <span class="o">=</span> <span class="n">nb_pax_per_airport</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;pax&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">biggest_airport_pax</span><span class="p">[</span><span class="s1">&#39;arr_port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">biggest_airport_pax</span><span class="p">[</span><span class="s1">&#39;arr_port&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getAirportName</span><span class="p">)</span>
+<span class="c1"># Sanitize pax number</span>
 <span class="n">biggest_airport_pax</span><span class="o">.</span><span class="n">pax</span> <span class="o">=</span> <span class="n">biggest_airport_pax</span><span class="o">.</span><span class="n">pax</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">biggest_airport_pax</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">biggest_airport_pax</span><span class="p">[</span><span class="s1">&#39;pax&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">biggest_airport_pax</span><span class="p">[</span><span class="s1">&#39;pax&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
+<span class="c1"># Create SQLite file with schema</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:////media/sf_SharedVirtbox/top_airports.db&#39;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
@@ -15653,6 +15655,7 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 
 <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 
+<span class="c1"># Append data to SQLite</span>
 <span class="n">biggest_airport_pax</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;list_airports&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -15670,13 +15673,13 @@ kz@kz-virtualbox:/media/sf_SharedVirtbox/searches.csv$ wc -l searches.csv
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2019-05-04 17:22:28,144 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
-2019-05-04 17:22:28,147 INFO sqlalchemy.engine.base.Engine ()
-2019-05-04 17:22:28,148 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
-2019-05-04 17:22:28,150 INFO sqlalchemy.engine.base.Engine ()
-2019-05-04 17:22:28,151 INFO sqlalchemy.engine.base.Engine PRAGMA table_info(&#34;list_airports&#34;)
-2019-05-04 17:22:28,153 INFO sqlalchemy.engine.base.Engine ()
-2019-05-04 17:22:28,155 INFO sqlalchemy.engine.base.Engine 
+<pre>2019-05-06 18:37:38,525 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test plain returns&#39; AS VARCHAR(60)) AS anon_1
+2019-05-06 18:37:38,527 INFO sqlalchemy.engine.base.Engine ()
+2019-05-06 18:37:38,528 INFO sqlalchemy.engine.base.Engine SELECT CAST(&#39;test unicode returns&#39; AS VARCHAR(60)) AS anon_1
+2019-05-06 18:37:38,528 INFO sqlalchemy.engine.base.Engine ()
+2019-05-06 18:37:38,529 INFO sqlalchemy.engine.base.Engine PRAGMA table_info(&#34;list_airports&#34;)
+2019-05-06 18:37:38,530 INFO sqlalchemy.engine.base.Engine ()
+2019-05-06 18:37:38,531 INFO sqlalchemy.engine.base.Engine 
 CREATE TABLE list_airports (
 	arr_port VARCHAR NOT NULL, 
 	pax INTEGER, 
@@ -15684,31 +15687,18 @@ CREATE TABLE list_airports (
 )
 
 
-2019-05-04 17:22:28,156 INFO sqlalchemy.engine.base.Engine ()
-2019-05-04 17:22:28,161 INFO sqlalchemy.engine.base.Engine COMMIT
-2019-05-04 17:22:28,165 INFO sqlalchemy.engine.base.Engine PRAGMA table_info(&#34;list_airports&#34;)
-2019-05-04 17:22:28,166 INFO sqlalchemy.engine.base.Engine ()
-2019-05-04 17:22:28,169 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
-2019-05-04 17:22:28,179 INFO sqlalchemy.engine.base.Engine INSERT INTO list_airports (arr_port, pax) VALUES (?, ?)
-2019-05-04 17:22:28,180 INFO sqlalchemy.engine.base.Engine ((&#39;London Heathrow Airport&#39;, 88809), (&#39;Orlando International Airport&#39;, 70930), (&#39;Los Angeles International Airport&#39;, 70530), (&#39;McCarran International Airport&#39;, 69630), (&#39;John F Kennedy International Airport&#39;, 66270), (&#39;Paris - Charles-de-Gaulle&#39;, 64490), (&#39;Suvarnabhumi&#39;, 59460), (&#39;Miami International Airport&#39;, 58150)  ... displaying 10 of 1000 total bound parameter sets ...  (&#39;Norwich Weather Centre&#39;, 340), (&#39;Shymkent&#39;, 340))
-2019-05-04 17:22:28,189 INFO sqlalchemy.engine.base.Engine COMMIT
+2019-05-06 18:37:38,532 INFO sqlalchemy.engine.base.Engine ()
+2019-05-06 18:37:38,536 INFO sqlalchemy.engine.base.Engine COMMIT
+2019-05-06 18:37:38,541 INFO sqlalchemy.engine.base.Engine PRAGMA table_info(&#34;list_airports&#34;)
+2019-05-06 18:37:38,542 INFO sqlalchemy.engine.base.Engine ()
+2019-05-06 18:37:38,546 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
+2019-05-06 18:37:38,559 INFO sqlalchemy.engine.base.Engine INSERT INTO list_airports (arr_port, pax) VALUES (?, ?)
+2019-05-06 18:37:38,562 INFO sqlalchemy.engine.base.Engine ((&#39;London Heathrow Airport&#39;, 88809), (&#39;Orlando International Airport&#39;, 70930), (&#39;Los Angeles International Airport&#39;, 70530), (&#39;McCarran International Airport&#39;, 69630), (&#39;John F Kennedy International Airport&#39;, 66270), (&#39;Paris - Charles-de-Gaulle&#39;, 64490), (&#39;Suvarnabhumi&#39;, 59460), (&#39;Miami International Airport&#39;, 58150)  ... displaying 10 of 2274 total bound parameter sets ...  (&#39;Mulu&#39;, 0), (&#39;Ayers Rock&#39;, 0))
+2019-05-06 18:37:38,577 INFO sqlalchemy.engine.base.Engine COMMIT
 </pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 

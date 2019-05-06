@@ -1,6 +1,6 @@
 # booking-avail-exercise
 
-[HTML preview of the Jupiter playbook](http://htmlpreview.github.com/?https://github.com/zero-khalid/booking-avail-exercise/blob/master/avail-booking.html "HTML preview of the Jupiter playbook")
+[HTML preview of the Jupiter notebook](http://htmlpreview.github.com/?https://github.com/zero-khalid/booking-avail-exercise/blob/master/avail-booking.html "HTML preview of the Jupiter Notebook")
 
 Dependencies: 
 - Python 3
@@ -9,7 +9,7 @@ Dependencies:
 - Pandas Schema
 - Matplotlib
 - GeoBases
-- Flask + Restful
+- Flask + Restful + Marshmallow
 - Flask Restful Swagger
 
 Using data provided by email
